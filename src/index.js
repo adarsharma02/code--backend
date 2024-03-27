@@ -6,7 +6,16 @@ import connectedDB from "./db/index.js";
 dotenv.config({
   path: "./env",
 });
-connectedDB();
+connectedDB()
+  .then(() => {
+    app.listen(process.env.PORT || 8000, () => {
+      console.log(`0 server is running :${process.env.PORT}`);
+    });
+  })
+
+  .catch((err) => {
+    console.log("monodb is conntected fail", err);
+  });
 
 /*
 import { Express } from "express";
